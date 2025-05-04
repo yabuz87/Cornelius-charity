@@ -1,0 +1,33 @@
+.image-divs img {
+    width: 100%;
+    height: 20rem; /* Set the desired height */
+    object-fit: cover; /* Ensure the image covers the allocated space */
+  }
+  .image-divs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    column-gap:2px;
+    row-gap:8px;
+  }
+  .responsive-icon {
+    font-size: 1.4rem; /* Default size for extra-small devices */
+  }
+  
+  @media (min-width: 576px) { /* Small devices (sm) and up */
+    .responsive-icon {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (min-width: 768px) { /* Medium devices (md) and up */
+    .responsive-icon {
+      font-size: 1.4rem;
+    }
+  }
+  
+  @media (min-width: 992px) { /* Large devices (lg) and up */
+    .responsive-icon {
+      font-size: 1.8rem;
+    }
+  }

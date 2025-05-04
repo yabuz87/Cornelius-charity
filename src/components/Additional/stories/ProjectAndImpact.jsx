@@ -1,6 +1,6 @@
 import React from 'react'
 import "./ProjectAndImpact.css"
-import ProjectSlider from './ProjectSlider'
+// import ProjectSlider from './ProjectSlider'
 import ProjectDescriptionSlider from './ProjectDescriptionSlider'
 import images from '../../../assets/img'
 import GallerySlider from '../gallery/GallerySlider'
@@ -55,7 +55,7 @@ const ProjectAndImpact = () => {
     
       {/* <ProjectSlider/> */}
 
-      <div className="" style={{border:"0.3px solid",overflow:"hidden"}}>
+      <div className="" style={{overflow:"hidden"}}>
       <div className="beneath-project-description">
       <div className="img-div-in-beneath-project-description">
         <img src={images[0]} className="img-fluid"></img>

@@ -1,0 +1,13 @@
+.icon:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+  }
+  .icon {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    border: 0.1px solid black; /* Change color if needed */
+    border-radius: 50%; /* Makes it a circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

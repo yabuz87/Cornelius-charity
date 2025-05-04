@@ -22,12 +22,13 @@
   }
   .donation-form
   {
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    margin:100px;
+   
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin:100px 50px;
     box-shadow: 0.3px 0.3px 2px 0.6px rgba(0, 0, 0, 0.2);
-    padding:20px;
+    /* padding:20px; */
   }
   .dontation-form div{
     font-size:15px;
@@ -41,6 +42,24 @@
     cursor:pointer;
   }
 
+  .progress-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    
+    
+  }
+  
+  progress {
+    width: 70%;
+    height: 20px;
+   
+  }
+  .progress-container progress {
+    width: 75%;
+    height: 20px;
+    transition: width 0.5s ease-in-out;
+  }
   .bank-icon:hover
   {
     transform:scale(1.03);
@@ -55,12 +74,20 @@
   .selected-bank-class{
     background-color: rgb(212, 222, 231);
   }
+
+
+  .dontating-form
+  {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
   .each-bank-container
   {
     display:flex;
     padding:3px;
     width:200px;
-    height: 300px;
+    height: 250px;
     vertical-align: top;
     flex-direction: column;
     align-items: center;
@@ -74,3 +101,17 @@
     justify-content: center;
     gap:10px;
   }
+
+  .terms-container {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+  }
+  
+  .terms-container.show {
+    opacity: 1;
+    max-height: 500px; /* Adjust based on content */
+  }
+
+  

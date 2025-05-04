@@ -12,6 +12,7 @@ import Donate from './components/Donate/Donate';
 import ProjectAndImpact from './components/Additional/stories/ProjectAndImpact';
 import Gallery from './components/Additional/gallery/Gallery';
 import UserDashBoard from './components/UserDashBoard';
+import Contact from './components/about/contact';
 
 const App = () => {
   const {authUser}=useAuthStore();
@@ -26,6 +27,7 @@ const App = () => {
       <Route path="/signup" element={!authUser ? <Signup/> : <Navigate to="/userDashBoard"/>}/>
       <Route path="/blog" element={<BlogAndNews/>}/>
       <Route path="/donate" element={<Donate/>}/>
+      <Route path="/contact" element={<Contact/>}/>
       <Route path="/projects" element={<ProjectAndImpact/>}/>
       <Route path="/gallery" element={<Gallery/>}/>
       </Routes>

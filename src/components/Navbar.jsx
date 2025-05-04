@@ -3,34 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [showNavbar, setShowNavbar] = useState(true);
-
-  // const handleScroll = () => {
-  //   const currentScrollPos = window.pageYOffset;
-  //   if (currentScrollPos > 200) {
-  //     setShowNavbar(false);
-  //   } else {
-  //     setShowNavbar(true);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
-
+  
   const navigate = useNavigate();
   const goto = (props) => {
     navigate(props);
   };
 
   return (
-    showNavbar && (
+  
       <nav className="navbar navbar-expand-lg  bg-body-tertiary fixed-top">
         <div className="container-lg ">
-          <a className="navbar-brand me-5" href="#" onClick={()=>goto("/")}><img src="/logo.png" style={{"width":"60px"}}></img><span className={{width:"70px"}}>Corneluis Charity Asossation</span></a>
+          <a className="navbar-brand me-5" href="#" onClick={()=>goto("/")}><img src="/logo.png" style={{"width":"60px"}}></img><span className={{width:"70px"}}>Corneluis Charity Org</span></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -71,7 +54,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    )
   );
 }
 

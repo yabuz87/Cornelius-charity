@@ -12,7 +12,7 @@ import Donate from './components/Donate/Donate';
 import ProjectAndImpact from './components/Additional/stories/ProjectAndImpact';
 import Gallery from './components/Additional/gallery/Gallery';
 import UserDashBoard from './components/UserDashBoard';
-import Contact from './components/about/contact';
+import Contact from './components/about/Contact';
 
 const App = () => {
   const {authUser}=useAuthStore();

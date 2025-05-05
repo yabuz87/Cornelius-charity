@@ -7,6 +7,7 @@ import "./home.css"
 import images from '../../assets/img';
 import PieChart from './PieChart';
 import BarChart from './BarChart';
+import TypingEffect from './TypingEffect';
 
 
 
@@ -25,7 +26,8 @@ navigate(props);
      <div className="img-page">
      <div className="discription-area">
      <h1 className="">Empowering lives, one act of kindness at a time.</h1>
-     <p className="">this is the official website of Corneluis Charity Organization in which you can see what is going on to this organization and to the society for which this project is stand for. you can also work with us</p>
+     <TypingEffect/>
+
      <div className="donate-button-container">
      <button className="vol-home-button" onClick={()=>handleNavigate("/contact")}>Contact Us</button>
      <button className="donation-home-button" onClick={()=>handleNavigate("/donate")}>Donate</button>

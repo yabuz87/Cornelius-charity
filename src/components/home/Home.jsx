@@ -26,7 +26,7 @@ navigate(props);
      <div className="img-page">
      <div className="discription-area">
      <h1 className="">Empowering lives, one act of kindness at a time.</h1>
-     <TypingEffect/>
+     <div className="typing_effect"> <TypingEffect/></div>
 
      <div className="donate-button-container">
      <button className="vol-home-button" onClick={()=>handleNavigate("/contact")}>Contact Us</button>

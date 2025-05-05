@@ -18,6 +18,9 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6); /* Change the opacity as needed */
 }
+.typing_effect{
+  position:relative;
+}
 
   .img-page .discription-area
   {

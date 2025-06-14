@@ -1,63 +1,178 @@
+:root {
+  --primary-color: #4a6bff;
+  --primary-hover: #3a5bef;
+  --text-color: #2d3748;
+  --light-gray: #f7fafc;
+  --gray: #e2e8f0;
+  --dark-gray: #718096;
+  --error-color: #e53e3e;
+  --success-color: #38a169;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s ease;
+}
+
+/* Base Styles */
 .Signup-container {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centering vertically */
-    align-items: center; /* Centering horizontally */
-    box-shadow: 0.3px 0.4px 0.4px rgba(0, 0, 0, 0.3);
-    padding: 20px; /* Added padding for spacing within the container */
-    width: 100%;
-    max-width: 500px; /* Limiting the maximum width for better appearance */
-    background-color: #fff; /* Added a background color for better contrast */
+  margin: 6rem auto 5rem auto; /* More space from nav & footer */
+  padding: 1.8rem;
+  width: 90%;
+  max-width: 420px;
+  background: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+body {
+  padding-top: 80px;  /* Adjust based on navbar height */
+  padding-bottom: 60px;  /* Adjust based on footer height */
+}
+
+
+.Signup-container h2 {
+  color: var(--text-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .Signup-container form {
-    width: 100%; /* Ensuring the form takes full width */
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: start; /* Aligning items to the left */
-    margin-bottom: 15px; /* Spacing between form groups */
+/* Input Fields */
+.Signup-container input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--gray);
+  border-radius: var(--border-radius);
+  font-size: 0.95rem;
+  transition: var(--transition);
+  background-color: var(--light-gray);
 }
 
-.Signup-container label {
-    margin-bottom: 5px; /* Small margin below labels for spacing */
-    font-weight: bold; /* Making labels bold for better readability */
+.Signup-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
 }
 
-.Signup-container input[type="text"],
-.Signup-container input[type="phone"] {
-    width: 100%; /* Full width input fields */
-    padding: 10px; /* Padding inside input fields for better look */
-    margin-bottom: 15px; /* Margin below input fields for spacing */
-    border: 1px solid #ccc; /* Light grey border */
-    border-radius: 4px; /* Rounded corners */
+.Signup-container input::placeholder {
+  color: var(--dark-gray);
 }
 
+/* Radio Buttons */
 .account-type-choice {
-    display: flex;
-    gap:100px;
-    flex-direction: row;
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.account-type-choice div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .account-type-label {
-    font-weight: 100; /* Setting font-weight to normal for radio button labels */
-    width:100%;
-    margin-right: 10px; /* Adding space between the label and radio button */
+  font-weight: 500;
+  color: var(--text-color);
+  cursor: pointer;
 }
 
 .account-type-input {
-    /* width: 40px; Consistent width for radio buttons */
-    height: 20px; /* Consistent height for radio buttons */
-    margin-right: 30px; /* Adding space between the radio button and the label */
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--primary-color);
+  cursor: pointer;
 }
 
-.Signup-container h2 {
-    margin-bottom: 20px; /* Spacing below the heading */
+/* Button */
+.Signup-container button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 0.5rem;
 }
 
+.Signup-container button:hover {
+  background-color: var(--primary-hover);
+}
+
+.Signup-container button:disabled {
+  background-color: var(--gray);
+  cursor: not-allowed;
+}
+
+/* Link Section */
 .Signup-container h3 {
-    margin-top: 30px; /* Spacing above the sub-heading */
+  font-size: 1rem;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.Signup-container p {
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: var(--transition);
+}
+
+.Signup-container p:hover {
+  color: var(--primary-hover);
+}
+
+.Signup-container p i {
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .Signup-container {
+    margin: 3rem 2rem;
+    padding: 1.5rem;
+  }
+
+  .account-type-choice {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .Signup-container h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .Signup-container {
+    padding: 1.2rem;
+    box-shadow: none;
+    border: 1px solid var(--gray);
+  }
+
+  .Signup-container input {
+    padding: 0.7rem 0.9rem;
+  }
 }

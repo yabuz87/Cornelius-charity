@@ -1,76 +1,182 @@
-.nav {
-    position: fixed;
+/* Navbar.css */
+:root {
+  --primary: #4361ee;
+  --primary-dark: #3a56d4;
+  --secondary: #3f37c9;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+  --success: #4cc9f0;
+  --danger: #ef233c;
+  --white: #ffffff;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.navbar {
+  background: var(--white) !important;
+  box-shadow: var(--shadow);
+  padding: 0.5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  transition: var(--transition);
+}
+
+.navbar.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.3rem 1rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: var(--dark);
+  transition: var(--transition);
+}
+
+.navbar-brand:hover {
+  color: var(--primary);
+}
+
+.navbar-brand img {
+  height: 50px;
+  width: auto;
+  margin-right: 0.75rem;
+  transition: var(--transition);
+}
+
+.navbar-brand:hover img {
+  transform: scale(1.05);
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--dark);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.nav-link {
+  color: var(--dark);
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  position: relative;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  transition: var(--transition);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.5rem;
+  color: var(--dark);
+  transition: var(--transition);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.donate-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white !important;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem !important;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.donate-btn:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.donate-btn i {
+  font-size: 1.2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    margin-top: 0.5rem;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 0 !important;
+  }
+  
+  .nav-link::after {
+    left: 0;
     right: 0;
-    top: 0;
-    height: 50px;
-    left: 0;
   }
   
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    justify-content: space-around;
-    margin: 10px 20px;
+  .dropdown-menu {
+    box-shadow: none;
+    border-left: 3px solid var(--primary);
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    height: 40px;
   }
   
-  .list {
-    text-decoration: none;
-    margin-top: 5px;
-    font-size: 17px;
-    padding: 2px;
-    list-style: none;
-    position: relative;
-    transition: 0.3s;
+  .navbar-brand span {
+    font-size: 0.9rem;
   }
   
-  .list a {
-    font-weight: 500; 
-    font-size: 15px;
+  .donate-btn {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem;
   }
-  
-  .list::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 0;
-    bottom: -2px;
-    background-color: black;
-    transition: width 0.3s;
-  }
-  
-  .list:hover::after {
-    width: 60%;
-  }
-  
-  ul {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center;
-  }
-  
-  .right-section {
-    margin-left: 10px;
-    display: flex;
-    gap: 30px;
-  }
-  
-  /* Ensure the button displays its content as a flex container */
-  button.btn {
-    display: flex;
-    align-items: center; /* Vertically centers the icon and text */
-    justify-content: center; /* Horizontally centers the icon and text */
-    gap: 8px; /* Adds space between icon and text (alternative to margin-right) */
-  }
-  
-  button.btn .bi {
-    font-size: 1.2em; /* Adjust icon size if necessary */
-  }
-  
-  /* Ensure the dropdown menu is displayed on hover */
-  .nav-item.dropdown:hover .dropdown-menu {
-    display: block;
-  }
-  
+}

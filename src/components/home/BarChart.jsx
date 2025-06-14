@@ -47,7 +47,7 @@ const BarChart = ({ data }) => {
 
   return (
     <div>
-      <h2>Bar Chart</h2>
+      <h2 className=" fs-sm-2 fs-md-3 fs-md-lg-4">Bar Chart</h2>
       <Bar data={chartData} options={options} />
     </div>
   );

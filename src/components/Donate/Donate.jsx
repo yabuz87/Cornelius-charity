@@ -97,7 +97,7 @@ const Donate = () => {
                   className={`each-bank-container row bank-icon ${selectedBank.index === index ? "selected-bank-class" : ""}`} 
                   onClick={() => handleBankSelect(oneBank, index)}
                 >
-                  <div className="d-flex row justify-content-center align-items-center">
+                  <div className="">
                     <img src={oneBank.img} alt={oneBank.name} className="banks-img" />
                   </div>
                   <div className="in-one-bank-div md-col-5">
@@ -109,7 +109,7 @@ const Donate = () => {
                 <div className="d-flex justify-content-center align-items-center">
                   <button 
                     type="button" 
-                    className={`btn my-1 ${selectedBank.index === index ? "btn-secondary" : "btn-success"}`}
+                    className={`btn my-1 ${selectedBank.index === index ? "btn-secondary" : "btn-prime"}`}
                   >
                     {selectedBank.index === index ? "Selected" : "Select"}
                   </button>
@@ -128,7 +128,7 @@ const Donate = () => {
                 <p>Thank you for being with us. Stay blessed.</p>
               </div>
               <div>
-                <button className="btn btn-secondary" onClick={handleTermsVisibility}>
+                <button className="btn btn-second" onClick={handleTermsVisibility}>
                   {termsVisible ? "Read Less" : "Read Terms and Privacy"}
                 </button>
               </div>
@@ -143,7 +143,7 @@ const Donate = () => {
           </div>
 
           <div className="col-12 d-flex flex-column justify-content-center align-items-center p-2">
-            <button className="btn btn-primary" type="submit">Submit form</button>
+            <button className="btn btn-prime btn-primary" type="submit">Submit form</button>
           </div>
         </form>
       </div>

@@ -3,23 +3,30 @@ import {imgs} from '../../../assets/imgs/gallery.js';
 import GallerySlider from "./GallerySlider"
 import GallerySlider2 from './GallerySlider2';
 import { useNavigate } from 'react-router-dom';
+import useGetStore from '../../store/useGetStore.js';
+import { useEffect } from 'react';
 
 
 const Gallery = () => {
   const navigate=useNavigate;
+  const {galleryData,getGalleries}=useGetStore();
   const handleNavigate=(props)=>{
     navigate(props);
 
   }
+  useEffect(
+    ()=>{
+      getGalleries()
+    },[])
   return (
   <>
     <div className="gallery-section">
        <div className="container-fluid  image-divs">
   {
-    imgs.map((item, index) => {
+    galleryData.map((item) => {
       return (
-        <div key={index} className="">
-          <img src={item} alt={`Image ${index + 1}`} className="img-fluid container-fluid"/>
+        <div key={item._id} className="">
+          <img src={item.photo} alt={`Image ${item._id}`} className="img-fluid container-fluid"/>
         </div>
       );
     })
@@ -36,7 +43,7 @@ const Gallery = () => {
         <div className="cards-container">
         <div className="container-lg">
         <div className="border card" style={{"width": "auto"}}>
-      <img src={imgs[0]} className="card-img-top img-fluid" alt="..."/>
+      <img src={galleryData[0].photo} className="card-img-top img-fluid" alt="..."/>
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -46,7 +53,7 @@ const Gallery = () => {
       </div>    
         <div className="container-lg">
         <div className="border card" style={{"width": "auto"}}>
-      <img src={imgs[0]} className="card-img-top img-fluid" alt="..."/>
+      <img src={galleryData[1].photo} className="card-img-top img-fluid" alt="..."/>
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -56,7 +63,7 @@ const Gallery = () => {
       </div>    
         <div className="container-lg">
         <div className="border card" style={{"width": "auto"}}>
-      <img src={imgs[0]} className="card-img-top img-fluid" alt="..."/>
+      <img src={galleryData[1].photo} className="card-img-top img-fluid" alt="..."/>
       <div className="card-body">
         <h5 className="card-title">Card title</h5>
         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -71,10 +78,10 @@ const Gallery = () => {
       </div>
       <div className="container-fluid  image-divs">
   {
-    imgs.map((item, index) => {
+    galleryData.map((item) => {
       return (
-        <div key={index} className="">
-          <img src={item} alt={`Image ${index + 1}`} className="img-fluid container-fluid"/>
+        <div key={item._id} className="">
+          <img src={item.photo} alt={`Image ${item._id}`} className="img-fluid container-fluid"/>
         </div>
       );
     })

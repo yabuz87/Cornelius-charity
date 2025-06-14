@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { data } from "../../../assets/imgs/project";
+
 import "./imgSlider.css";
 
 function ProjectDescriptionSlider() {

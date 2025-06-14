@@ -7,6 +7,8 @@ export const useAuthStore = create((set) => ({
   isSigningUp: false,
   isLoggingIn: false,
   isUpdatingProfile: false,
+  emailForVerify:"",
+  setEmailForVerify: (email) => set({ emailForVerify: email }),
   isCheckingAuth: true,
 
   checkAuth: async () => {
@@ -28,7 +30,7 @@ export const useAuthStore = create((set) => ({
       const response = await axiosInstance.post("auth/signup",data);
       
 
-      toast.success("Account has been created successfully! 🎉");
+      // toast.success("Account has been created successfully! 🎉");
       set({ authUser:response.data});
     } catch (error) {
       console.log("Error in signup method:",error);
@@ -40,6 +42,27 @@ export const useAuthStore = create((set) => ({
       set({ isSigningUp: false });
     }
   },
+ createAccount: async (data) => {
+  try {
+    set({ isSigningUp: true });
+    const response = await axiosInstance.post("auth/createAccount", data);
+
+    if (!response) {
+      throw new Error("Invalid response from server.");
+    }
+
+    toast.success("✅ Email verified and account created!");
+    set({ authUser: response.data });
+
+  } catch (error) {
+    const errorMessage =
+      error.response?.data?.message || error.message || "❌ Signup failed.";
+    toast.error(errorMessage);
+    throw new Error(errorMessage); // rethrow if needed in component
+  } finally {
+    set({ isSigningUp: false });
+  }
+},
   logout:async ()=>{
    try{
     await axiosInstance.post("auth/logout");

@@ -1,134 +1,156 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import "./blog.css";
-import img from '../../assets/doug-linstedt-jEEYZsaxbH4-unsplash.jpg';
 import useGetStore from '../store/useGetStore';
 import { LoaderIcon } from 'react-hot-toast';
 
 const BlogAndNews = () => {
   const { blogData, isBlogsLoading, getBlogs } = useGetStore();
-  const [expanded, setExpanded] = useState({});
-  const [arrayIndex, setArrayIndex] = useState(0);
+  const [liked, setLike] = useState({});
+  const [activeCategory, setActiveCategory] = useState('All Posts');
 
-  // Memoized getBlogs to prevent unnecessary re-renders
   const fetchBlogs = useCallback(() => {
     getBlogs();
   }, [getBlogs]);
+
+  const toggleLike = (id) => {
+    setLike(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   useEffect(() => {
     fetchBlogs();
   }, [fetchBlogs]);
 
   const formatDate = (dateString) => {
-    if (!dateString) return 'Unknown Date'; // Fallback for undefined date
+    if (!dateString) return 'Unknown Date';
     const date = new Date(dateString);
-    const day = date.getUTCDate();
-    const month = date.getUTCMonth() + 1; // getUTCMonth() returns 0-11
-    const year = date.getUTCFullYear();
-    return `${month}/${day}/${year}`;
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
   };
 
-  const handleReadMore = (index) => {
-    setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
-  };
+  const filteredBlogs = blogData ? blogData.filter(blog => {
+    if (activeCategory === 'All Posts') return true;
+    // Implement actual category filtering when available
+    return true;
+  }) : [];
 
-  const getFirstFiveSentences = (text) => {
-    if (!text) return ''; // Fallback for undefined or null text
-    const sentences = text.split('.').filter((sentence) => sentence.trim() !== '');
-    return sentences.slice(0, 5).join('. ') + (sentences.length > 5 ? '...' : '');
-  };
-
-  const chooseToRead = (arrayIndex) => {
-    if (!blogData || !blogData[arrayIndex]) {
-      return <p className="text-center">No blog post selected.</p>; // Fallback if arrayIndex is out-of-bounds
-    }
-
-    const blog = blogData[arrayIndex];
-    return (
-      <div className="container-fluid" key={blog.id}>
-        <div className="image-div-central-side">
-          <img
-            className="img-fluid"
-            style={{ width: "100%", borderRadius: "20px" }}
-            src={blog.photo}
-            alt={blog.title}
-          />
-        </div>
-        <h4 className="mt-3">{blog.title}</h4>
-        <p>Uploaded Date: {formatDate(blog.createdAt)}</p>
-        <p>{blog.description}</p>
-        <div className="blog-footer">
-          <div></div>
-        </div>
-      </div>
-    );
-  };
-
-  const handleArrayIndexChange = (index) => {
-    setArrayIndex(index);
-  };
+  const categories = [
+    { name: 'All Posts', icon: 'bi-grid' },
+    { name: 'Our Impact', icon: 'bi-award' },
+    { name: 'Project News', icon: 'bi-megaphone' },
+    { name: 'New Blogs', icon: 'bi-pencil' },
+    { name: 'Upcoming Plans', icon: 'bi-calendar' },
+    { name: 'Success Stories', icon: 'bi-trophy' },
+    { name: 'Team Updates', icon: 'bi-people' }
+  ];
 
   return isBlogsLoading ? (
-    <div><LoaderIcon /></div>
-  ) : (
-    <div className="blog-section container-lg">
-    <div className="left-section">
-    <h2 className="text-center mt-5">News & Blogs</h2>
-        <ul>
-          <li>our Impact News</li>
-          <li>Project News </li>
-          <li>New Blog</li>
-          <li>upcomming Plan News</li>
-        </ul>
+    <div className="loader-container">
+      <LoaderIcon className="loader-icon" />
     </div>
-      <div className="centeral-section">
-        {chooseToRead(arrayIndex)}
-      </div>
-      <div className="right-section">
-        {blogData && blogData.length > 0 ? (
-          blogData.map((item, index) => (
-            <div
-              className="container-fluid mb-3"
-              key={item.id || index} // Use unique id if available
-              onClick={() => handleArrayIndexChange(index)}
+  ) : (
+    <div className="blog-container">
+      {/* Left Sidebar - Categories */}
+      <div className="sidebar left-sidebar">
+        <h2 className="sidebar-title">Categories</h2>
+        <ul className="category-list">
+          {categories.map((category) => (
+            <li 
+              key={category.name}
+              className={`category-item ${activeCategory === category.name ? 'active' : ''}`}
+              onClick={() => setActiveCategory(category.name)}
             >
-              <div className="image-div-left-side">
-                <img
-                  className="img-fluid"
-                  style={{ width: "100%" }}
-                  src={item.photo}
-                  alt={item.title}
-                />
-              </div>
-              <h4>{item.title}</h4>
-              
-              <div className="blog-footer">
-                <div></div>
-              </div>
-            </div>
-          ))
+              <i className={`bi ${category.icon}`}></i>
+              {category.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Main Content - All Blog Posts */}
+      <div className="main-content">
+        {filteredBlogs.length > 0 ? (
+          <div className="blog-posts-container">
+            {filteredBlogs.map((blog) => (
+              <article className="blog-post" key={blog.id}>
+                <div className="post-image-container">
+                  <img
+                    className="post-image"
+                    src={blog.photo || 'https://via.placeholder.com/800x450?text=Blog+Image'}
+                    alt={blog.title}
+                  />
+                  <button 
+                    className={`like-button ${liked[blog.id] ? 'liked' : ''}`}
+                    onClick={() => toggleLike(blog.id)}
+                  >
+                    <i className={`bi ${liked[blog.id] ? "bi-heart-fill" : "bi-heart"}`}></i>
+                  </button>
+                </div>
+                <div className="post-content">
+                  <h2 className="post-title">{blog.title}</h2>
+                  <div className="post-meta">
+                    <span>
+                      <i className="bi bi-calendar"></i>
+                      {formatDate(blog.createdAt)}
+                    </span>
+                    <span>
+                      <i className="bi bi-person"></i>
+                      By {blog.author || 'Admin'}
+                    </span>
+                  </div>
+                  <p className="post-body">
+                    {blog.description}
+                  </p>
+                  <a href="#" className="read-more">
+                    Read more <i className="bi bi-arrow-right"></i>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
         ) : (
-          <p className="text-center fs-4" style={{}}>No blog posts available.</p>
+          <div className="no-post-selected">
+            <i className="bi bi-newspaper"></i>
+            <h2>No posts found</h2>
+            <p>Try selecting a different category or check back later for new content</p>
+          </div>
         )}
+      </div>
+
+      {/* Right Sidebar - Blog Previews */}
+      <div className="sidebar right-sidebar">
+        <h2 className="sidebar-title">Recent Posts</h2>
+        <div className="post-previews">
+          {blogData && blogData.length > 0 ? (
+            blogData.slice(0, 5).map((blog) => (
+              <div
+                className="post-preview"
+                key={blog.id}
+              >
+                <div className="preview-image-container">
+                  <img
+                    className="preview-image"
+                    src={blog.photo || 'https://via.placeholder.com/150?text=Blog'}
+                    alt={blog.title}
+                  />
+                </div>
+                <div className="preview-content">
+                  <h3 className="preview-title">{blog.title}</h3>
+                  <p className="preview-date">
+                    <i className="bi bi-calendar"></i> {formatDate(blog.createdAt)}
+                  </p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="no-posts-message">No recent posts available</p>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 export default BlogAndNews;
-
-
-
-
-// {/* <p>
-//                 {expanded[index]
-//                   ? item.description
-//                   : getFirstFiveSentences(item.description)}
-//               </p>
-//               {item.description.split('.').filter((sentence) => sentence.trim() !== '').length > 5 && (
-//                 <button className="btn mb-2" onClick={(e) => {
-//                   e.stopPropagation(); // Prevent parent `onClick` from triggering
-//                   handleReadMore(index);
-//                 }}>
-//                   {expanded[index] ? 'Read Less' : 'Read More'}
-//                 </button>
-//               )} */}

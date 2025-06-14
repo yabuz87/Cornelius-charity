@@ -1,98 +1,99 @@
-import React from 'react'
-import "./ProjectAndImpact.css"
-// import ProjectSlider from './ProjectSlider'
-import ProjectDescriptionSlider from './ProjectDescriptionSlider'
-import images from '../../../assets/img'
-import GallerySlider from '../gallery/GallerySlider'
-
+import React, { useEffect } from 'react';
+import "./ProjectAndImpact.css";
+import ProjectDescriptionSlider from './ProjectDescriptionSlider';
+import images from '../../../assets/img';
+import useGetStore from '../../store/useGetStore';
+import GallerySlider from '../gallery/GallerySlider';
 
 const ProjectAndImpact = () => {
+  const { projectData, getProjects } = useGetStore();
+
+  useEffect(() => {
+    getProjects();
+  }, []);
+
   return (
-    <div className="container-fluid project-container" style={{marginTop:"100px"}}>
+    <div className="project-impact-container">
+      <section className="impact-hero">
        
-
-       <GallerySlider/>
-      <h2  className="text-center mx-4">Long story short</h2>
-        <p className="text-center ">here is works those have been done and impacts made on life of society</p>
-        <div className="cards-container">
-        <div className="container-lg">
-        <div className="border card" style={{"width": "auto"}}>
-      <img src={images[0]} className="card-img-top img-fluid" alt="..."/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a className=" text-light btn btn-warning">Go somewhere</a>
-      </div>
-      </div>
-      </div>    
-        <div className="container-lg">
-        <div className=" card" style={{"width": "auto"}}>
-      <img src={images[0]} className="card-img-top img-fluid" alt="..."/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a className=" text-light btn btn-warning">Go somewhere</a>
-      </div>
-      </div>
-      </div>    
-        <div className="container-lg">
-        <div className="border card" style={{"width": "auto"}}>
-      <img src={images[0]} className="card-img-top img-fluid" alt="..."/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a className=" text-light btn btn-warning">Go somewhere</a>
-      </div>
-      </div>
-      </div> 
+        <div className="hero-content">
+          <h2 className="hero-title">Our Projects & Impact</h2>
+          <p className="hero-subtitle">Transforming lives through meaningful initiatives</p>
         </div>
-    
-        <div className="container d-flex justify-content-center align-items-center full-height m-5">
-        <button className="btn btn-primary" onClick={()=>{handleNavigate("projects")}}>ReadMore <i className="bi bi-arrow-right-circle-fill"></i></button>
-      </div>
-      <h2 className="text-success text-center">Project And Our Impacts</h2>
-      <p className="text-center">the following slider shows the details of our project and our focuing areas and our achievments</p>
-    
-      {/* <ProjectSlider/> */}
+      </section>
 
-      <div className="" style={{overflow:"hidden"}}>
-      <div className="beneath-project-description">
-      <div className="img-div-in-beneath-project-description">
-        <img src={images[0]} className="img-fluid"></img>
-      </div>
-      <div className="text-div-in-beneath-project-description">
-      <h2 className="text-success text-center">Project And Our Impacts</h2>
-      <p className="text-center">the following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievments</p>
-      </div>
-     </div>
-     <div className="beneath-project-description">
-      
-      <div className="text-div-in-beneath-project-description">
-      <h2 className="text-success text-center">Project And Our Impacts</h2>
-      <p className="text-center">the following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievmentsthe following slider shows the details of our project and our focuing areas and our achievments</p>
-      </div>
-      <div className="img-div-in-beneath-project-description">
-        <img src={images[0]} className="img-fluid"></img>
-      </div>
-     </div>
-      </div>
-      <ProjectDescriptionSlider/>
+ <GallerySlider />
+      {/* Project Cards Section */}
+      <section className="projects-section">
+        <div className="section-header">
+          <h2 className="section-title">Long story short</h2>
+          <p className="section-description">
+            Here are works that have been done and impacts made on the life of society.
+          </p>
+        </div>
+
+        <div className="cards-container">
+          {projectData?.length > 0 && projectData.map((project, index) => (
+            <div key={index} className="project-card">
+              <div className="card-image-container">
+                <img src={project.photo} className="card-image" alt={`Project ${project.title}`} />
+                <div className="image-overlay"></div>
+              </div>
+              <div className="card-content">
+                <h3 className="card-title">{project.title || "Project Title"}</h3>
+                <p className="card-text">
+                  {project.description?.substring(0, 100) || "Project description goes here..."}
+                </p>
+                <button className="card-button">
+                  Learn More <i className="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="view-more-container">
+          <button className="view-more-btn">
+            Read More <i className="bi bi-arrow-right-circle-fill"></i>
+          </button>
+        </div>
+      </section>
+
+      {/* Impact Section */}
+      <section className="impact-showcase">
+        <div className="section-header">
+          <h2 className="section-title">Project And Our Impacts</h2>
+          <p className="section-description">
+            The following shows the details of our project, our focus areas, and our achievements.
+          </p>
+        </div>
+
+        <div className="impact-items-container">
+          {projectData?.length >= 1 && projectData.map((item) => (
+            <div key={item._id} className="impact-item">
+              <div className="impact-image-wrapper">
+                <img src={item.photo} className="impact-image" alt={`Impact ${item.title}`} />
+              </div>
+              <div className="impact-content">
+                <h3 className="impact-title">{item.title}</h3>
+                <p className="impact-description">{item.description}</p>
+                <div className="impact-stats">
+                  <div className="stat-item">
+                    <span className="stat-value">500+</span>
+                    <span className="stat-label">Lives Changed</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-value">20+</span>
+                    <span className="stat-label">Communities</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectAndImpact
-
-
-//{/* <div className="">
-      
-      {/* <h1 className="text-center text-success">You are the one Who can make a change with us</h1> */}
-    //   {/* <div className="img-Page contaienr-fluid">
-    // </div>
-    // <h1 className="title-about text-light">
-    // Thank you for your kind hands and compassionate hearts
-    // </h1> */}
-
-
-
-   // </div> 
+export default ProjectAndImpact;

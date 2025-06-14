@@ -1,77 +1,144 @@
-.Signup-container {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centering vertically */
-    align-items: center; /* Centering horizontally */
-    box-shadow: 0.3px 0.3px 2px 0.3px rgba(0, 0, 0, 0.2);
-    padding: 20px; /* Added padding for spacing within the container */
-    width: 100%;
-    max-width: 500px; /* Limiting the maximum width for better appearance */
-    background-color: #fff; /* Added a background color for better contrast */
+/* Login.css */
+
+.Login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
 }
 
-.Signup-container form {
-    width: 100%; /* Ensuring the form takes full width */
+.login-card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: start; /* Aligning items to the left */
-    margin-bottom: 15px; /* Spacing between form groups */
+.login-card h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  color: #1e293b;
 }
 
-
-.Signup-container input[type="text"],
-.Signup-container input[type="phone"] {
-    width: 100%; /* Full width input fields */
-    padding: 10px; /* Padding inside input fields for better look */
-    margin-bottom: 15px; /* Margin below input fields for spacing */
-    border: 1px solid #ccc; /* Light grey border */
-    border-radius: 4px; /* Rounded corners */
+.login-card .subtext {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 2rem;
 }
 
-.account-type-choice {
-    display: flex;
-    flex-direction: row;
+.login-card form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
-.account-type-label {
-    font-weight: 100; /* Setting font-weight to normal for radio button labels */
-    width:60px;
-    color:black;
-    margin-right: 10px; /* Adding space between the label and radio button */
+.login-card form input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
-.account-type-input {
-    width: 20px; /* Consistent width for radio buttons */
-    height: 20px; /* Consistent height for radio buttons */
-    margin-right: 10px; /* Adding space between the radio button and the label */
+.login-card form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
-.Signup-container h2 {
-    margin-bottom: 20px; /* Spacing below the heading */
+.login-card form button:hover:not(:disabled) {
+  background-color: #1d4ed8;
 }
 
-.Signup-container h3 {
-    margin-top: 30px; /* Spacing above the sub-heading */
+.login-card form button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
 }
 
-.hr-container {
-    display: flex;
-    align-items: center;
-    text-align: center;
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.divider hr {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #cbd5e1;
+}
+
+.divider span {
+  padding: 0 1rem;
+  color: #6b7280;
+}
+
+.google-login {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea4335;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.google-login i {
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.google-login:hover {
+  background-color: #fef2f2;
+}
+
+.signup-text {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.signup-text .link {
+  color: #16a34a;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.signup-text .link:hover {
+  color: #15803d;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
   }
-  
-  .hr-container hr {
-    flex: 1;
-    border: none;
-    border-top: 1px solid #000;
+
+  .login-card h2 {
+    font-size: 1.5rem;
   }
-  
-  .hr-container .or-text {
-    margin: 0 10px;
-    white-space: nowrap;
+
+  .google-login {
+    font-size: 0.95rem;
   }
-  
+}

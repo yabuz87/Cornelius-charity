@@ -46,7 +46,7 @@ const PieChart = ({ data }) => {
 
   return (
     <div>
-      <h2>Pie Chart</h2>
+      <h2 className="fs-2">Pie Chart</h2>
       <Pie ref={chartRef} data={chartData} />
     </div>
   );

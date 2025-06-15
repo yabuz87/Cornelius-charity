@@ -1,9 +1,8 @@
-import GalleryCarouel from './GalleryCarouel';
-import { imgs } from '../../../assets/imgs/gallery.js';
-import GallerySlider from "./GallerySlider";
 import { useNavigate } from 'react-router-dom';
-import useGetStore from '../../store/useGetStore.js';
 import { useEffect } from 'react';
+import useGetStore from '../../store/useGetStore.js';
+import GallerySlider from "./GallerySlider";
+import "./Gallery.css";
 
 const Gallery = () => {
   const navigate = useNavigate();
@@ -19,64 +18,55 @@ const Gallery = () => {
 
   return (
     <>
-     {/* Gallery */}
-      <section className="gallery-section">
-        <h2 className="section-title text-center">Moments That Matter</h2>
-        <p className="section-subtitle text-center">Capturing the joy and transformation in the communities we serve</p>
-        
-        <div className="gallery-grid">
-          {galleryData.map((img) => (
-            <div key={img._id} className="gallery-item">
-              <img src={img.photo} alt={`Gallery ${img._id}`} className="gallery-img" />
+      {/* Hero Gallery Section */}
+      <section className="gallery-hero text-center py-5">
+        <h2 className="section-title">📸 Moments That Matter</h2>
+        <p className="section-subtitle text-muted">
+          Capturing joy, transformation, and impact across communities.
+        </p>
+      </section>
+
+      {/* Image Grid Section */}
+      <section className="container gallery-grid-section">
+        <div className="row g-4">
+          {galleryData.map((item) => (
+            <div key={item._id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div className="card h-100 shadow-sm gallery-card">
+                <img src={item.photo} alt={item.title} className="card-img-top gallery-img" />
+                <div className="card-body d-flex flex-column justify-content-between">
+                  <h5 className="card-title">{item.title}</h5>
+                  <p className="card-text text-muted small">{new Date(item.createdAt).toLocaleDateString()}</p>
+                  <p className="card-text">{item.description?.slice(0, 80)}...</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
-        
-        <div className="text-center mt-4">
-          <button 
-            className="btn btn-primary" 
-            onClick={() => handleNavigate("/gallery")}
-          >
+
+        <div className="text-center mt-5">
+          <button className="btn btn-primary" onClick={() => handleNavigate("/gallery")}>
             View Full Gallery <i className="bi bi-arrow-right-circle-fill"></i>
           </button>
         </div>
       </section>
 
-      <h2 className="text-center mx-4">Long story short</h2>
-      <p className="text-center">
-        Here are works that have been done and impacts made on the life of society.
-      </p>
+      {/* Gallery Slider */}
+      <section className="py-5 bg-light">
+        <div className="container">
+          <h2 className="text-center mb-4">More Highlights</h2>
+          <GallerySlider />
+        </div>
+      </section>
 
-      <div className="cards-container">
-        {galleryData.length > 2 && (
-          <>
-            {[0, 1, 2].map((index) => (
-              <div className="container-lg" key={index}>
-                <div className="border card" style={{ width: "auto" }}>
-                  <img
-                    src={galleryData[index].photo}
-                    className="card-img-top img-fluid"
-                    alt={`Gallery ${index}`}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                    <button className="text-light btn btn-warning">Go somewhere</button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </>
-        )}
-      </div>
+      {/* Impact Summary */}
+      <section className="container text-center py-5">
+        <h2>Long Story Short</h2>
+        <p>Here are works that have been done and the impacts made on the life of society.</p>
 
-      <div className="container d-flex justify-content-center align-items-center full-height m-5">
-        <button className="btn btn-primary" onClick={() => handleNavigate("projects")}>
+        <button className="btn btn-outline-success mt-3" onClick={() => handleNavigate("projects")}>
           Read More <i className="bi bi-arrow-right-circle-fill"></i>
         </button>
-      </div>
+      </section>
     </>
   );
 };

@@ -1,4 +1,36 @@
-.gallery-section
-{
-  margin-top:100px;
+.gallery-img {
+  object-fit: cover;
+  height: 220px;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.05);
+}
+
+.gallery-card {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.gallery-hero {
+  background: linear-gradient(90deg, #f8f9fa, #e9ecef);
+  border-bottom: 1px solid #ddd;
+}
+
+.gallery-grid-section {
+  padding: 2rem 0;
 }

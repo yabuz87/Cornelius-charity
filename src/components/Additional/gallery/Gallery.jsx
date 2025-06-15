@@ -1,13 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import useGetStore from '../../store/useGetStore.js';
-import GallerySlider from "./GallerySlider";
 import "./Gallery.css";
 
 const Gallery = () => {
   const navigate = useNavigate();
   const { galleryData, getGalleries } = useGetStore();
-  const length=galleryData.length;
 
   useEffect(() => {
     getGalleries();
@@ -19,7 +17,7 @@ const Gallery = () => {
 
   return (
     <>
-      {/* Hero Gallery Section */}
+      {/* Hero Section */}
       <section className="gallery-hero text-center py-5">
         <h2 className="section-title">📸 Moments That Matter</h2>
         <p className="section-subtitle text-muted">
@@ -27,7 +25,7 @@ const Gallery = () => {
         </p>
       </section>
 
-      {/* Image Grid Section */}
+      {/* Gallery Grid */}
       <section className="container gallery-grid-section">
         <div className="row g-4">
           {galleryData.map((item) => (
@@ -48,14 +46,6 @@ const Gallery = () => {
           <button className="btn btn-primary" onClick={() => handleNavigate("/gallery")}>
             View Full Gallery <i className="bi bi-arrow-right-circle-fill"></i>
           </button>
-        </div>
-      </section>
-
-      {/* Gallery Slider */}
-      <section className="py-5 bg-light">
-        <div className="container">
-          <h2 className="text-center mb-4">More Highlights</h2>
-          <GallerySlider />
         </div>
       </section>
 

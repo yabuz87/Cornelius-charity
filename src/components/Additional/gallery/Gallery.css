@@ -3,6 +3,7 @@
   height: 220px;
   border-radius: 0.5rem;
   transition: transform 0.3s ease;
+  width: 100%;
 }
 
 .gallery-img:hover {
@@ -29,8 +30,46 @@
 .gallery-hero {
   background: linear-gradient(90deg, #f8f9fa, #e9ecef);
   border-bottom: 1px solid #ddd;
+  padding: 2rem 1rem;
 }
 
 .gallery-grid-section {
-  padding: 2rem 0;
+  padding: 2rem 1rem;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .gallery-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery-img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .gallery-img {
+    height: 160px;
+  }
+
+  .gallery-grid-section {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .gallery-hero {
+    padding: 1.5rem 0.5rem;
+  }
 }

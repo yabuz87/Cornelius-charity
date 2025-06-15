@@ -1,9 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuthStore } from './store/useAuthStore';
+import { useNavigate } from 'react-router-dom';
 
 const UserDashBoard = () => {
-  const { authUser } = useAuthStore();
+  const { authUser, logout } = useAuthStore();
+  const navigate = useNavigate();
 
   const {
     fullName = "Unknown User",
@@ -13,6 +15,11 @@ const UserDashBoard = () => {
     profile,
   } = authUser || {};
 
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
+
   return (
     <div className="container mt-4">
       <div className="row" style={{ marginTop: "80px" }}>
@@ -21,8 +28,8 @@ const UserDashBoard = () => {
           <div className="card text-center">
             <div className="card-body">
               <img
-                src={profile || "https://via.placeholder.com/150"}
-                alt="Profile"
+                src={profile || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                alt="User Icon"
                 className="img-fluid rounded-circle mb-3"
                 style={{ width: "100px", height: "100px", objectFit: "cover" }}
               />
@@ -30,6 +37,12 @@ const UserDashBoard = () => {
               <p className="card-text"><strong>Email:</strong> {email}</p>
               <p className="card-text"><strong>Phone:</strong> {phone}</p>
               <p className="card-text"><strong>Membership:</strong> {membership}</p>
+              <button
+                onClick={handleLogout}
+                className="btn btn-danger mt-3 w-100"
+              >
+                🚪 Logout
+              </button>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import "./Gallery.css";
 const Gallery = () => {
   const navigate = useNavigate();
   const { galleryData, getGalleries } = useGetStore();
+  const length=galleryData.length;
 
   useEffect(() => {
     getGalleries();

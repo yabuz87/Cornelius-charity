@@ -97,33 +97,3 @@ const ProjectAndImpact = () => {
 };
 
 export default ProjectAndImpact;
-
-
-
-
-
-
-
-
- {/* Gallery */}
-      <section className="gallery-section">
-        <h2 className="section-title text-center">Moments That Matter</h2>
-        <p className="section-subtitle text-center">Capturing the joy and transformation in the communities we serve</p>
-        
-        <div className="gallery-grid">
-          {galleryData.map((img) => (
-            <div key={img._id} className="gallery-item">
-              <img src={img.photo} alt={`Gallery ${img._id}`} className="gallery-img" />
-            </div>
-          ))}
-        </div>
-        
-        <div className="text-center mt-4">
-          <button 
-            className="btn btn-primary" 
-            onClick={() => handleNavigate("/gallery")}
-          >
-            View Full Gallery <i className="bi bi-arrow-right-circle-fill"></i>
-          </button>
-        </div>
-      </section>

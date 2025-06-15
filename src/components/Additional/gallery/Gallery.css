@@ -37,7 +37,14 @@
   padding: 2rem 1rem;
 }
 
-/* Responsive Tweaks */
+/* Hide GallerySlider on tablet & mobile */
+@media (max-width: 991px) {
+  .gallery-slider-wrapper {
+    display: none;
+  }
+}
+
+/* Mobile-specific tweaks */
 @media (max-width: 768px) {
   .section-title {
     font-size: 2rem;

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import useGetStore from '../../store/useGetStore.js';
+import GallerySlider from "./GallerySlider";
 import "./Gallery.css";
 
 const Gallery = () => {
@@ -46,6 +47,14 @@ const Gallery = () => {
           <button className="btn btn-primary" onClick={() => handleNavigate("/gallery")}>
             View Full Gallery <i className="bi bi-arrow-right-circle-fill"></i>
           </button>
+        </div>
+      </section>
+
+      {/* Gallery Slider - Hidden on mobile/tablet */}
+      <section className="py-5 bg-light gallery-slider-wrapper">
+        <div className="container">
+          <h2 className="text-center mb-4">More Highlights</h2>
+          <GallerySlider />
         </div>
       </section>
 

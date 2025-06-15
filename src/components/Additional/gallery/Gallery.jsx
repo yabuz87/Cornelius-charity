@@ -19,25 +19,28 @@ const Gallery = () => {
 
   return (
     <>
-      <div className="gallery-section">
-        <div className="container-fluid image-divs">
-          {galleryData.map((item) => (
-            <div key={item._id} className="">
-              <img
-                src={item.photo}
-                alt={`Image ${item._id}`}
-                className="img-fluid container-fluid"
-              />
+     {/* Gallery */}
+      <section className="gallery-section">
+        <h2 className="section-title text-center">Moments That Matter</h2>
+        <p className="section-subtitle text-center">Capturing the joy and transformation in the communities we serve</p>
+        
+        <div className="gallery-grid">
+          {galleryData.map((img) => (
+            <div key={img._id} className="gallery-item">
+              <img src={img.photo} alt={`Gallery ${img._id}`} className="gallery-img" />
             </div>
           ))}
         </div>
-
-        <h2 className="text-center" style={{ marginTop: "60px" }}>Gallery</h2>
-        <p className="text-center">
-          This is the Gallery section. All our projects and achievements are documented and saved as gallery memories. Each of them has its own date, description, and title. Enjoy it.
-        </p>
-        <GallerySlider />
-      </div>
+        
+        <div className="text-center mt-4">
+          <button 
+            className="btn btn-primary" 
+            onClick={() => handleNavigate("/gallery")}
+          >
+            View Full Gallery <i className="bi bi-arrow-right-circle-fill"></i>
+          </button>
+        </div>
+      </section>
 
       <h2 className="text-center mx-4">Long story short</h2>
       <p className="text-center">

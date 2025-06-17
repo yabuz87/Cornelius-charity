@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import "./blog.css";
-import {formatRelativeDate} from "../libs/utils.js"
+import {formatRelativeDate,formatDate} from "../libs/utils.js"
 import useGetStore from '../store/useGetStore';
 import { LoaderIcon } from 'react-hot-toast';
 
@@ -88,7 +88,7 @@ const BlogAndNews = () => {
                   <div className="post-meta">
                     <span>
                       <i className="bi bi-calendar"></i>
-                      {formatRelativeDate(blog.createdAt) ()}
+                      {formatDate(blog.createdAt)}
                     </span>
                     <span>
                       <i className="bi bi-person"></i>

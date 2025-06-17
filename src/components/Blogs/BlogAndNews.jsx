@@ -88,7 +88,7 @@ const BlogAndNews = () => {
                   <div className="post-meta">
                     <span>
                       <i className="bi bi-calendar"></i>
-                      {formatDate(blog.createdAt) ()}
+                      {formatRelativeDate(blog.createdAt) ()}
                     </span>
                     <span>
                       <i className="bi bi-person"></i>

@@ -22,7 +22,7 @@ const ProjectAndImpact = () => {
         </div>
       </section>
 
-<div className="container">
+<div className="container gallery-slider-wrapper">
           <h2 className="text-center mb-4">More Highlights</h2>
           <GallerySlider />
         </div>

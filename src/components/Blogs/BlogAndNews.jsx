@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import "./blog.css";
+import {formatRelativeDate} from "../libs/utils.js"
 import useGetStore from '../store/useGetStore';
 import { LoaderIcon } from 'react-hot-toast';
 
@@ -23,12 +24,6 @@ const BlogAndNews = () => {
     fetchBlogs();
   }, [fetchBlogs]);
 
-  const formatDate = (dateString) => {
-    if (!dateString) return 'Unknown Date';
-    const date = new Date(dateString);
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
-  };
 
   const filteredBlogs = blogData ? blogData.filter(blog => {
     if (activeCategory === 'All Posts') return true;
@@ -93,7 +88,7 @@ const BlogAndNews = () => {
                   <div className="post-meta">
                     <span>
                       <i className="bi bi-calendar"></i>
-                      {formatDate(blog.createdAt)}
+                      {formatDate(blog.createdAt) ()}
                     </span>
                     <span>
                       <i className="bi bi-person"></i>
@@ -139,7 +134,7 @@ const BlogAndNews = () => {
                 <div className="preview-content">
                   <h3 className="preview-title">{blog.title}</h3>
                   <p className="preview-date">
-                    <i className="bi bi-calendar"></i> {formatDate(blog.createdAt)}
+                    <i className="bi bi-calendar"></i> {formatRelativeDate(blog.createdAt)}
                   </p>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 import { useAnimation } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useGetStore } from "../store/useGetStore";
+import  useGetStore  from "../store/useGetStore";
 import img3 from "../../assets/imgs/img3.jpg"; // This can be used as fallback if needed
 import './About.css';
 

@@ -36,7 +36,7 @@ const ProjectAndImpact = () => {
         </div>
 
         <div className="cards-container">
-          {projectData?.length > 0 && projectData.map((project, index) => (
+          {projectData?.slice(0,3).map((project, index) => (
             <div key={index} className="project-card">
               <div className="card-image-container">
                 <img src={project.photo} className="card-image" alt={`Project ${project.title}`} />

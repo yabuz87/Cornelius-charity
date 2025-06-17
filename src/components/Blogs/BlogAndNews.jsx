@@ -88,7 +88,7 @@ const BlogAndNews = () => {
                   <div className="post-meta">
                     <span>
                       <i className="bi bi-calendar"></i>
-                      {formatDate(blog.createdAt)}
+                      { formatRelativeDate(blog.createdAt)}
                     </span>
                     <span>
                       <i className="bi bi-person"></i>
@@ -134,7 +134,7 @@ const BlogAndNews = () => {
                 <div className="preview-content">
                   <h3 className="preview-title">{blog.title}</h3>
                   <p className="preview-date">
-                    <i className="bi bi-calendar"></i> {formatRelativeDate(blog.createdAt)}
+                    <i className="bi bi-calendar"></i> {formatDate(blog.createdAt)}
                   </p>
                 </div>
               </div>

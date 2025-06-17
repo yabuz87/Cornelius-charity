@@ -6,7 +6,7 @@ import useGetStore from '../../store/useGetStore';
 import GallerySlider from '../gallery/GallerySlider';
 
 const ProjectAndImpact = () => {
-  const { projectData, getProjects } = useGetStore();
+  const { projectData, getProjects,isProjectsLoading } = useGetStore();
 
   useEffect(() => {
     getProjects();
@@ -22,7 +22,10 @@ const ProjectAndImpact = () => {
         </div>
       </section>
 
- <GallerySlider />
+<div className="container">
+          <h2 className="text-center mb-4">More Highlights</h2>
+          <GallerySlider />
+        </div>
       {/* Project Cards Section */}
       <section className="projects-section">
         <div className="section-header">
